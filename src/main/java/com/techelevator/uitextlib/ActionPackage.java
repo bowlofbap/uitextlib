@@ -4,6 +4,7 @@ public class ActionPackage<T>{
 	private Actions action;
 	private Scene<T> scene;
 	private ActionPackage<T> followupAction;
+	private int numPops = 1;
 	
 	public static enum Actions {
 		POP,
@@ -25,8 +26,22 @@ public class ActionPackage<T>{
 	}
 	
 	public ActionPackage(Actions action, ActionPackage<T> followupAction) {
+		if (action != Actions.ACTION) { throw new InvalidActionException(); }
 		this.action = action;
 		this.followupAction = followupAction;
+	}
+	
+	/*
+	 * pops back n number of scenes
+	 */
+	public ActionPackage(Actions action, int numPops) {
+		if (action != Actions.POP) { throw new InvalidActionException(); }
+		this.action = action;
+		this.numPops = numPops;
+	}
+	
+	public int getNumPops() {
+		return numPops;
 	}
 
 	public Actions getAction() {

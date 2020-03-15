@@ -35,7 +35,9 @@ public class MultipleChoiceLabel<T> implements Showable, Requestable<T>{
 		for (int i = 0; i < choices.size(); i++) { 
 			String choice = choices.get(i);
 			if (choice.length() > 0 && choice.substring(0, 1).equals("-")) { continue; }
-			System.out.println("(" + (i + 1) + ") " + choice); 
+			String printString = String.format("%-7s", "(" + (i + 1) + ") ");
+			printString += choice;
+			System.out.println(printString); 
 		}
 	}
 	

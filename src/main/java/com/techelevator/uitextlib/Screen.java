@@ -37,7 +37,7 @@ public class Screen <T>{
 		if (action.getAction() == Actions.REFRESH) {
 			//nothing to do
 		}else if(action.getAction() == Actions.POP) {
-			popScene();
+			popScene(action.getNumPops());
 		}else if(action.getAction() == Actions.PUSH) {
 			Scene<T> newScene = action.getScene();
 			pushNewScene(newScene);
@@ -56,8 +56,16 @@ public class Screen <T>{
 	}
 
 	//chooses the next scene to display when refreshed
-	public void popScene() {
-		sceneStack.pop();
+	public void popScene(int numPops) {
+		if (numPops == 0) {
+			while (sceneStack.size() > 1) {
+				sceneStack.pop();
+			}
+		}else {
+			for (int i = 0; i < numPops; i++) {
+				sceneStack.pop();
+			}
+		}
 	}
 	
 	public Scene<T> getCurrentScene() {
